@@ -1,18 +1,13 @@
-`timescale 1ns / 1ps
-
 module REGISTER_UNIT(D,Q,R_W);
+    // D FLIP-FLOP
     input D;
     output reg Q;
+    // Enable Write
     input R_W;
 
-    reg clk;
-    initial
-        clk = 0;
-    always
-        #1 clk = ~clk;
-
-    always @(posedge clk)
+    always @(posedge R_W)
     begin
+        // Write into D Flip-Flop
         if (R_W == 1)
             Q <= D;
     end
